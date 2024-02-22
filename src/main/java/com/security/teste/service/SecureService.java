@@ -18,7 +18,6 @@ public class SecureService {
 
     public List<SecureDto> getSecureDto() {
         return repository.findAll().stream()
-                .sorted(Comparator.comparing(SecureEntity::getId))
                 .map(userEntity -> new SecureDto(userEntity.getName()))
                 .toList();
     }
@@ -27,10 +26,6 @@ public class SecureService {
         SecureEntity secureEntity = new SecureEntity();
         secureEntity.setName(secureDto.getName());
         secureEntity.setRole(RoleEnum.USER);
-        SecureEntity secureEntity1 = new SecureEntity();
-        secureEntity1.setName(secureDto.getName());
-        secureEntity1.setRole(RoleEnum.ADMIN);
         repository.save(secureEntity);
-        repository.save(secureEntity1);
     }
 }

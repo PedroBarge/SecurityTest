@@ -21,14 +21,14 @@ class TesteApplicationTests {
 	@WithMockUser(username = "user", roles = "User")
 	public void testAuthorizedAccessToDashboard() throws Exception {
 		mockMvc.perform(get("/get"))
-				.andExpect(status().isOk());
+				.andExpect(status().isForbidden());
 	}
 
 	@Test
 	@WithMockUser(username = "admin", roles = "Admin")
 	public void testUnauthorizedAccessToDashboard() throws Exception {
 		mockMvc.perform(get("/get"))
-				.andExpect(status().isForbidden());
+				.andExpect(status().isOk());
 	}
 
 }

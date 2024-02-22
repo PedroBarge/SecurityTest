@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/secure")
 public class SecureController {
     private final SecureService service;
 
@@ -16,8 +15,8 @@ public class SecureController {
     }
 
     @GetMapping("/get")
-    public List<SecureDto> get() {
-        return service.getSecureDto();
+    public String get() {
+        return "ola";
     }
 
     @PostMapping("/add")
