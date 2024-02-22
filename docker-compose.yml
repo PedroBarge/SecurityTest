@@ -1,0 +1,25 @@
+version: "3.9"
+
+networks:
+  test_security_net:
+    name: test_security_net
+    driver: bridge
+
+volumes:
+  database-store:
+    driver: local
+
+services:
+  database:
+    image: postgres:13
+    container_name: database-test_security
+    volumes:
+      - ~/.docker-conf/postgres/data/:/var/lib/postgres
+    ports:
+      - 5440:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: testsecurity
+    networks:
+      - test_security_net
